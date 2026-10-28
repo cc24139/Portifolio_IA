@@ -1,0 +1,246 @@
+---
+import fallbackCaseImage from "@/images/projects/default.svg";
+import PortfolioImage from "@/components/landing/PortfolioImage.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import type { PortfolioCase } from "@/data/portfolio";
+
+interface Props {
+  item: PortfolioCase;
+  backHref: string;
+  backLabel: string;
+  eyebrow: string;
+}
+
+const { item, backHref, backLabel, eyebrow } = Astro.props;
+
+const [contextBlock, processBlock, resultBlock] = item.detail.blocks;
+---
+
+<section class="pb-16 pt-32 lg:pb-32 lg:pt-40">
+  <Wrapper variant="standard">
+    <a
+      href={backHref}
+      class="text-xs tracking-tight text-base-600 transition-colors hover:text-accent-700 dark:text-base-300 dark:hover:text-accent-400"
+    >
+      ← {backLabel}
+    </a>
+
+    <div class="mt-8 grid grid-cols-1 gap-8 border-b border-base-200 pb-12 dark:border-base-800 lg:mt-12 lg:grid-cols-4 lg:items-start lg:gap-12">
+      <Text
+        tag="p"
+        variant="textXS"
+        class="uppercase text-base-600 dark:text-base-300"
+      >
+        {item.year}
+      </Text>
+
+      <div class="lg:col-span-2">
+        <Text
+          tag="h1"
+          variant="displaySM"
+          class="font-semibold leading-tight tracking-tighter text-base-900 dark:text-white"
+        >
+          {item.title}
+        </Text>
+        <Text
+          tag="p"
+          variant="textSM"
+          class="mt-6 text-base-600 dark:text-base-300"
+        >
+          {item.detail.summary}
+        </Text>
+      </div>
+
+      <aside class="flex flex-col gap-6 border-t border-base-200 pt-6 dark:border-base-800 lg:border-t-0 lg:pt-0">
+        <Text
+          tag="p"
+          variant="textXS"
+          class="uppercase text-base-600 dark:text-base-300"
+        >
+          {item.category}
+        </Text>
+        {
+          item.detail.meta.map((entry) => (
+            <div>
+              <Text
+                tag="p"
+                variant="textXS"
+                class="uppercase text-base-400 dark:text-base-500"
+              >
+                {entry.label}
+              </Text>
+              <Text
+                tag="p"
+                variant="textSM"
+                class="mt-1 text-base-700 dark:text-base-200"
+              >
+                {entry.value}
+              </Text>
+            </div>
+          ))
+        }
+      </aside>
+    </div>
+
+    <PortfolioImage
+      width={1420}
+      height={930}
+      src={fallbackCaseImage}
+      alt={`Imagem principal de ${item.title}`}
+      class="mt-12 aspect-[16/10] w-full object-cover object-center lg:mt-16"
+    />
+
+    {
+      contextBlock && (
+        <section class="mt-16 border-t border-base-200 pt-12 dark:border-base-800 lg:mt-24 lg:pt-16">
+          <div class="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12 lg:items-start">
+            <div class="lg:col-span-3">
+              <Text tag="p" variant="textXS" class="uppercase text-base-600 dark:text-base-300">
+                {eyebrow} 01
+              </Text>
+              <Text
+                tag="p"
+                variant="textSM"
+                class="mt-6 max-w-xs text-base-500 dark:text-base-400"
+              >
+                {contextBlock.aside}
+              </Text>
+            </div>
+
+            <div class="lg:col-span-4">
+              <Text
+                tag="h2"
+                variant="textLG"
+                class="font-semibold leading-tight text-base-900 dark:text-white"
+              >
+                {contextBlock.heading}
+              </Text>
+              <Text
+                tag="p"
+                variant="textSM"
+                class="mt-4 text-base-600 dark:text-base-300"
+              >
+                {contextBlock.text}
+              </Text>
+            </div>
+
+            <div class="lg:col-span-5">
+              <PortfolioImage
+                width={900}
+                height={1100}
+                src={fallbackCaseImage}
+                alt={`Imagem lateral — ${contextBlock.heading}`}
+                class="aspect-[4/5] w-full object-cover object-center"
+              />
+            </div>
+          </div>
+        </section>
+      )
+    }
+
+    {
+      processBlock && (
+        <section class="mt-16 border-t border-base-200 pt-12 dark:border-base-800 lg:mt-24 lg:pt-16">
+          <div class="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12 lg:items-center">
+            <div class="order-2 lg:order-1 lg:col-span-5">
+              <PortfolioImage
+                width={900}
+                height={700}
+                src={fallbackCaseImage}
+                alt={`Imagem — ${processBlock.heading}`}
+                class="aspect-[5/4] w-full object-cover object-center"
+              />
+            </div>
+
+            <div class="order-1 lg:order-2 lg:col-span-4 lg:col-start-8">
+              <Text tag="p" variant="textXS" class="uppercase text-base-600 dark:text-base-300">
+                {eyebrow} 02
+              </Text>
+              <Text
+                tag="h2"
+                variant="textLG"
+                class="mt-2 font-semibold leading-tight text-base-900 dark:text-white"
+              >
+                {processBlock.heading}
+              </Text>
+              <Text
+                tag="p"
+                variant="textSM"
+                class="mt-4 text-base-600 dark:text-base-300"
+              >
+                {processBlock.text}
+              </Text>
+            </div>
+
+            <div class="order-3 lg:col-span-3 lg:col-start-10 lg:row-start-1">
+              <Text
+                tag="p"
+                variant="textSM"
+                class="max-w-xs text-base-500 lg:ml-auto lg:text-right dark:text-base-400"
+              >
+                {processBlock.aside}
+              </Text>
+            </div>
+          </div>
+        </section>
+      )
+    }
+
+    {
+      resultBlock && (
+        <section class="mt-16 border-t border-base-200 pt-12 dark:border-base-800 lg:mt-24 lg:pt-16">
+          <div class="grid grid-cols-1 gap-8 lg:grid-cols-4">
+            <Text tag="p" variant="textXS" class="uppercase text-base-600 dark:text-base-300">
+              {eyebrow} 03
+            </Text>
+
+            <div class="lg:col-span-2">
+              <Text
+                tag="h2"
+                variant="textLG"
+                class="font-semibold leading-tight text-base-900 dark:text-white"
+              >
+                {resultBlock.heading}
+              </Text>
+              <Text
+                tag="p"
+                variant="textSM"
+                class="mt-4 text-base-600 dark:text-base-300"
+              >
+                {resultBlock.text}
+              </Text>
+            </div>
+
+            <Text
+              tag="p"
+              variant="textSM"
+              class="text-base-500 lg:ml-auto lg:max-w-xs lg:text-right dark:text-base-400"
+            >
+              {resultBlock.aside}
+            </Text>
+          </div>
+
+          <PortfolioImage
+            width={1420}
+            height={930}
+            src={fallbackCaseImage}
+            alt={`Imagem final — ${resultBlock.heading}`}
+            class="mt-10 aspect-[16/9] w-full object-cover object-center lg:mt-12"
+          />
+        </section>
+      )
+    }
+
+    <div class="mt-16 border-t border-base-200 pt-10 dark:border-base-800 lg:mt-24">
+      <a
+        href={backHref}
+        class="text-xs tracking-tight text-base-600 transition-colors hover:text-accent-700 dark:text-base-300 dark:hover:text-accent-400"
+      >
+        ← {backLabel}
+      </a>
+    </div>
+  </Wrapper>
+</section>
+
+
