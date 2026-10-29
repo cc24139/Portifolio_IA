@@ -63,17 +63,40 @@ import { siteContent } from "@/data/site";
                 {project.category}
               </Text>
             </div>
-            <PortfolioMediaLink href={`/projeto/${project.slug}`}>
-              <PortfolioImage
-                width={1200}
-                height={630}
-                src={defaultProjectImage}
-                alt={`Imagem do projeto ${project.title}`}
-                loading="lazy"
-                decoding="async"
-                class="size-full aspect-4/2 object-cover object-center transition-transform duration-500 group-hover:scale-[1.02]"
-              />
-            </PortfolioMediaLink>
+            {
+              project.videoUrl ? (
+                <video
+                  class="mt-6 aspect-video w-full bg-base-950 object-contain"
+                  controls
+                  preload="metadata"
+                  playsinline
+                  aria-label={`Demonstração em vídeo de ${project.title}`}
+                >
+                  <source src={project.videoUrl} type="video/mp4" />
+                  Seu navegador não oferece suporte à reprodução de vídeo.
+                </video>
+              ) : (
+                <PortfolioMediaLink href={`/projeto/${project.slug}`}>
+                  <PortfolioImage
+                    width={1200}
+                    height={630}
+                    src={defaultProjectImage}
+                    alt={`Imagem do projeto ${project.title}`}
+                    loading="lazy"
+                    decoding="async"
+                    class="size-full aspect-4/2 object-cover object-center transition-transform duration-500 group-hover:scale-[1.02]"
+                  />
+                </PortfolioMediaLink>
+              )
+            }
+            {project.videoUrl && (
+              <a
+                href={`/projeto/${project.slug}`}
+                class="mt-4 inline-flex text-xs tracking-tight text-accent-700 transition-colors hover:text-accent-900 dark:text-accent-400 dark:hover:text-accent-300"
+              >
+                Ver detalhes do projeto →
+              </a>
+            )}
           </article>
         ))
       }
