@@ -21,30 +21,19 @@ export const siteContent = {
   },
   education: [
     {
-      period: "Ano — Ano",
-      title: "Nome do curso ou instituição",
+      period: "2024 - Cursando",
+      title: "Técnico em Informática Integrado ao Ensino Médio",
+      School: "Colégio Técnico de Campinas - UNICAMP (COTUCA)",
       description:
-        "Descreva aqui sua formação, área de estudo e principais aprendizados.",
-      category: "Graduação",
-    },
-    {
-      period: "Ano — Ano",
-      title: "Nome do curso ou instituição",
-      description:
-        "Descreva aqui sua formação, área de estudo e principais aprendizados.",
-      category: "Pós-graduação",
-    },
-    {
-      period: "Ano — Ano",
-      title: "Nome do curso ou certificação",
-      description:
-        "Descreva aqui cursos, bootcamps ou certificações relevantes.",
-      category: "Curso / Certificação",
+        "Formação técnica abrangente na área de TI, com foco na criação de uma base sólida em logica de programação, Interface com o usuário e Banco de dados.",
+      category: "Técnico",
+      Image: "public/GENIA/ctc.png",
     },
   ],
   footerLinks: [
-    { href: "#_", text: "LinkedIn" },
-    { href: "#_", text: "Arena" },
-    { href: "#_", text: "GitHub" },
+    { href: "https://www.linkedin.com/in/lfilipelima", text: "LinkedIn" },
+    { href: "https://www.kaggle.com/luisfilipelima", text: "Kaggle" },
+    { href: "https://huggingface.co/LFilipeLima", text: "Hugging Face" },
+    { href: "https://github.com/cc24139", text: "GitHub" },
   ],
 };

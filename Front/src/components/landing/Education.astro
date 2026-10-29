@@ -39,6 +39,11 @@ import { siteContent } from "@/data/site";
                 {item.period}
               </Text>
 
+              <img
+                src={item.Image}
+                alt={item.School}
+                class="h-12 w-auto max-w-full object-contain sm:h-14 md:h-16"
+              />
               <Text
                 tag="h3"
                 variant="textLG"
@@ -46,7 +51,6 @@ import { siteContent } from "@/data/site";
               >
                 {item.title}
               </Text>
-
               <Text
                 tag="p"
                 variant="textSM"
@@ -69,5 +73,3 @@ import { siteContent } from "@/data/site";
     </div>
   </Wrapper>
 </section>
-
-
