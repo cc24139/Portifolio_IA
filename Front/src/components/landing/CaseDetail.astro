@@ -83,13 +83,28 @@ const [contextBlock, processBlock, resultBlock] = item.detail.blocks;
       </aside>
     </div>
 
-    <PortfolioImage
-      width={1420}
-      height={930}
-      src={fallbackCaseImage}
-      alt={`Imagem principal de ${item.title}`}
-      class="mt-12 aspect-[16/10] w-full object-cover object-center lg:mt-16"
-    />
+    {
+      item.videoUrl ? (
+        <video
+          class="mt-12 aspect-[16/10] w-full bg-base-950 object-contain lg:mt-16"
+          controls
+          preload="metadata"
+          playsinline
+          aria-label={`Demonstração em vídeo de ${item.title}`}
+        >
+          <source src={item.videoUrl} type="video/mp4" />
+          Seu navegador não oferece suporte à reprodução de vídeo.
+        </video>
+      ) : (
+        <PortfolioImage
+          width={1420}
+          height={930}
+          src={fallbackCaseImage}
+          alt={`Imagem principal de ${item.title}`}
+          class="mt-12 aspect-[16/10] w-full object-cover object-center lg:mt-16"
+        />
+      )
+    }
 
     {
       contextBlock && (
@@ -233,6 +248,16 @@ const [contextBlock, processBlock, resultBlock] = item.detail.blocks;
     }
 
     <div class="mt-16 border-t border-base-200 pt-10 dark:border-base-800 lg:mt-24">
+      {item.repositoryUrl && (
+        <a
+          href={item.repositoryUrl}
+          target="_blank"
+          rel="noreferrer"
+          class="mb-6 inline-flex text-xs tracking-tight text-accent-700 transition-colors hover:text-accent-900 dark:text-accent-400 dark:hover:text-accent-300"
+        >
+          Ver código e documentação no GitHub ↗
+        </a>
+      )}
       <a
         href={backHref}
         class="text-xs tracking-tight text-base-600 transition-colors hover:text-accent-700 dark:text-base-300 dark:hover:text-accent-400"
