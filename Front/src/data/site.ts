@@ -27,7 +27,7 @@ export const siteContent = {
       description:
         "Formação técnica abrangente na área de TI, com foco na criação de uma base sólida em logica de programação, Interface com o usuário e Banco de dados.",
       category: "Técnico",
-      Image: "public/GENIA/ctc.png",
+      Image: "GENIA/ctc.png",
     },
   ],
   footerLinks: [

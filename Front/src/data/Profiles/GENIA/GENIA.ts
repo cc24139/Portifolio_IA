@@ -5,7 +5,8 @@ export const GENIA = {
   contactLabel: "Contato",
   contactHref: "#contato",
   intro:
-    "Developer, Brazil.Me chamo Luis Filipe e sou um desenvolvedor apaixonado por tecnologia e inovação. Tenho experiência em desenvolvimento web, mobile e backend, sempre buscando aprender novas tecnologias e aprimorar minhas habilidades.",
+    "Developer, Brazil.Me chamo Luis Filipe e sou um desenvolvedor curioso sobre a evolução da IA. Estou sempre atento sobre ás novidades e tendências do setor e realizo testes e experimentos para entender melhor como a IA pode ser aplicada em diferentes contextos.",
+    
   navigationLinks: [
     { href: "#work", text: "Trabalho" },
     { href: "#projects", text: "Projetos" },
