@@ -1,18 +1,10 @@
-export const siteContent = {
-  brand: "lore",
-  location: "Brazil, SP",
-  role: "developer",
-  contactLabel: "Contato",
-  contactHref: "#contato",
-  intro:
-    "Developer, Brazil.Me chamo Luis Filipe e sou um desenvolvedor apaixonado por tecnologia e inovação. Tenho experiência em desenvolvimento web, mobile e backend, sempre buscando aprender novas tecnologias e aprimorar minhas habilidades.",
+export const profileContent = {
   navigationLinks: [
-    { href: "#work", text: "Trabalho" },
     { href: "#projects", text: "Projetos" },
     { href: "#education", text: "Educação" },
   ],
   sectionLabels: {
-    projectsEyebrow: "Projetos em destaque Seus projetos",
+    projectsEyebrow: "Projetos em destaque",
     projectsTitle: "Projetos",
     workEyebrow: "Trabalhos recentes Sua experiência",
     workTitle: "Trabalho",
@@ -27,7 +19,7 @@ export const siteContent = {
       description:
         "Formação técnica abrangente na área de TI, com foco na criação de uma base sólida em logica de programação, Interface com o usuário e Banco de dados.",
       category: "Técnico",
-      Image: "GENIA/ctc.png",
+      Image: "/GENIA/ctc.png",
     },
   ],
   footerLinks: [

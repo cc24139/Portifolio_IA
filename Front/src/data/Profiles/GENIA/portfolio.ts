@@ -146,6 +146,41 @@ export const projectItems: PortfolioCase[] = [
       ],
     },
   },
+  {
+    slug: "Water-Path",
+    year: "TCC",
+    title: "Water-Path: Predição de metais pesados por Ensemble Learning",
+    description:
+      "Utilização de técnicas de Ensemble Learning para prever a concentração de metais pesados em amostras de água.",
+    category: "Inteligência Artificial",
+    repositoryUrl: "https://github.com/cc24139/TrabalhosIA/tree/main/ti326m-trabalho1-equipe-11-master/ti326m-trabalho1-equipe-11-master",
+    detail: {
+      summary:
+        "Trabalho de conclusão de curso que utiliza técnicas de Ensemble Learning para prever a concentração de metais pesados em amostras de água.",
+      meta: [
+        { label: "Papel", value: "Desenvolvimento em equipe · Luis Filipe Lima (24139)" },
+        { label: "Equipe", value: "Daniel Henrique da Silva Soares (24123) " },
+        { label: "Tecnologias", value: "Python · Machine Learning · Deep Learning · Ensemble Learning · FastAPI"  },
+      ],
+      blocks: [
+        {
+          heading: "O desafio",
+          text: "Desenvolver soluções baseadas em inteligência artificial para problemas específicos, utilizando dados e algoritmos apropriados.",
+          aside: "A implementação envolve a coleta e pré-processamento de dados, bem como a escolha e treinamento de modelos.",
+        },
+        {
+          heading: "Técnicas aplicadas",
+          text: "O projeto utiliza técnicas de machine learning e deep learning para criar modelos capazes de aprender com os dados e fazer previsões.",
+          aside: "Os modelos são avaliados com base em métricas relevantes para o problema em questão.",
+        },
+        {
+          heading: "Entrega",
+          text: "O trabalho inclui a implementação dos modelos, a análise dos resultados e a documentação do processo de desenvolvimento.",
+          aside: "Código e documentação disponíveis no GitHub.",
+        },
+      ],
+    },
+  }
 ];
 
 export function getWorkItem(slug: string) {

@@ -1,10 +1,10 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import CaseDetail from "@/components/landing/CaseDetail.astro";
-import { getWorkItem, workItems } from "@/data/portfolio";
+import { activeProfile, getWorkItem } from "@/data/Profiles/activeProfile";
 
 export function getStaticPaths() {
-  return workItems.map((item) => ({
+  return activeProfile.workItems.map((item) => ({
     params: { slug: item.slug },
   }));
 }

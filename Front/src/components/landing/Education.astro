@@ -1,7 +1,7 @@
 ---
 import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-import { siteContent } from "@/data/site";
+import { activeProfile } from "@/data/Profiles/activeProfile";
 ---
 
 <section class="scroll-mt-32" id="education">
@@ -13,7 +13,7 @@ import { siteContent } from "@/data/site";
           variant="textSM"
           class="text-base-600 dark:text-base-300"
         >
-          {siteContent.sectionLabels.educationEyebrow}
+          {activeProfile.sectionLabels.educationEyebrow}
         </Text>
       </div>
 
@@ -22,13 +22,13 @@ import { siteContent } from "@/data/site";
         variant="textXL"
         class="font-semibold leading-snug tracking-tighter lg:col-span-2 text-base-900 dark:text-white"
       >
-        {siteContent.sectionLabels.educationTitle}
+        {activeProfile.sectionLabels.educationTitle}
       </Text>
     </div>
 
     <div class="flex flex-col gap-12 mt-12">
       {
-        siteContent.education.map((item) => (
+        activeProfile.education.map((item) => (
           <article class="py-12 border-t border-base-200 dark:border-base-800">
             <div class="grid grid-cols-1 gap-4 lg:grid-cols-4 items-start">
               <Text
