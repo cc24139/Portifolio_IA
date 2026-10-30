@@ -96,7 +96,6 @@ export const projectItems: PortfolioCase[] = [
       "Agente em Python para jogar Othello, usando busca Minimax e poda Alfa-Beta para escolher jogadas contra outra IA.",
     category: "Inteligência Artificial · Jogos",
     repositoryUrl: "https://github.com/cc24139/TrabalhosIA/tree/main/ti326m-trabalho1-equipe3-master/ti326m-trabalho1-equipe3-master",
-    videoUrl: "/GENIA/20261029-0054-27.8724262.mp4",
     detail: {
       summary:
         "Trabalho da disciplina TI326 que modela o jogo Othello e implementa um agente capaz de disputar partidas contra outra inteligência artificial.",
@@ -132,6 +131,7 @@ export const projectItems: PortfolioCase[] = [
       "Caminho de busca com meta-heurísticas: aplicação de ILS e BRKGA para encontrar rotas que respeitem precedências de coleta e entrega.",
     category: "Inteligência Artificial · Otimização",
     repositoryUrl: "https://github.com/cc24139/TrabalhosIA/tree/main/ti326m-trabalho2-equipe-11-master/ti326m-trabalho2-equipe-11-master",
+    videoUrl: "/GENIA/Trabalho2BRKGAILS.mp4",
     detail: {
       summary:
         "Trabalho da disciplina TI326 que implementa e compara duas meta-heurísticas para o problema do caixeiro-viajante com coleta e entrega.",
