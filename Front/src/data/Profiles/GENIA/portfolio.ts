@@ -1,7 +1,18 @@
+import type { ImageMetadata } from "astro";
+
 export type CaseDetailBlock = {
   heading: string;
   text: string;
   aside: string;
+  image?: ImageMetadata;
+};
+
+export type CasePipelineStep = {
+  eyebrow: string;
+  title: string;
+  text: string;
+  details?: string[];
+  branches?: Array<{ title: string; text: string }>;
 };
 
 export type CaseDetailMeta = {
@@ -13,6 +24,7 @@ export type CaseDetail = {
   summary: string;
   meta: CaseDetailMeta[];
   blocks: CaseDetailBlock[];
+  pipeline?: CasePipelineStep[];
 };
 
 export type PortfolioCase = {
@@ -23,6 +35,7 @@ export type PortfolioCase = {
   category: string;
   repositoryUrl?: string;
   videoUrl?: string;
+  coverImage?: ImageMetadata;
   detail: CaseDetail;
 };
 
@@ -148,35 +161,72 @@ export const projectItems: PortfolioCase[] = [
   },
   {
     slug: "Water-Path",
-    year: "TCC",
+    year: "2026 · TCC",
     title: "Water-Path: Predição de metais pesados por Ensemble Learning",
     description:
-      "Utilização de técnicas de Ensemble Learning para prever a concentração de metais pesados em amostras de água.",
-    category: "Inteligência Artificial",
-    repositoryUrl: "https://github.com/cc24139/TrabalhosIA/tree/main/ti326m-trabalho1-equipe-11-master/ti326m-trabalho1-equipe-11-master",
+      "Sistema de análise de coletas de água que combina imagens do corpo hídrico, detecções visuais e estimativas de concentração de oito metais para apoiar a triagem ambiental.",
+    category: "IA aplicada · Visão computacional · Regressão",
+    repositoryUrl: "https://github.com/cc24139/WaterPath_TCC",
     detail: {
       summary:
-        "Trabalho de conclusão de curso que utiliza técnicas de Ensemble Learning para prever a concentração de metais pesados em amostras de água.",
+        "TCC que integra uma foto e medições físico-químicas de uma coleta. O serviço de IA detecta elementos visuais na imagem e estima concentrações de oito metais; a API reúne esses dados, aplica uma regra de triagem de risco e registra a análise.",
       meta: [
         { label: "Papel", value: "Desenvolvimento em equipe · Luis Filipe Lima (24139)" },
         { label: "Equipe", value: "Daniel Henrique da Silva Soares (24123) " },
-        { label: "Tecnologias", value: "Python · Machine Learning · Deep Learning · Ensemble Learning · FastAPI"  },
+        { label: "Tecnologias", value: "Python · FastAPI · YOLO ONNX · scikit-learn · XGBoost · CatBoost" },
       ],
       blocks: [
         {
           heading: "O desafio",
-          text: "Desenvolver soluções baseadas em inteligência artificial para problemas específicos, utilizando dados e algoritmos apropriados.",
-          aside: "A implementação envolve a coleta e pré-processamento de dados, bem como a escolha e treinamento de modelos.",
+          text: "A qualidade de um corpo hídrico é acompanhada a partir de coletas com medidas de laboratório e observações visuais. O WaterPath organiza essas evidências por coleta para apoiar a análise e priorizar o acompanhamento de rios e lagos.",
+          aside: "A imagem e os parâmetros físico-químicos alimentam etapas distintas de inferência antes de serem reunidos pela API.",
         },
         {
-          heading: "Técnicas aplicadas",
-          text: "O projeto utiliza técnicas de machine learning e deep learning para criar modelos capazes de aprender com os dados e fazer previsões.",
-          aside: "Os modelos são avaliados com base em métricas relevantes para o problema em questão.",
+          heading: "FastAPI servindo os modelos",
+          text: "O serviço Python em FastAPI expõe POST /analyze. A API principal envia a imagem e os dados da coleta; o serviço coordena a inferência visual e a estimativa dos metais e devolve as detecções, a imagem anotada e as previsões estruturadas.",
+          aside: "Separar inferência em serviço próprio deixa o contrato entre API e modelos explícito e permite validar essa integração com testes compartilhados.",
         },
         {
-          heading: "Entrega",
-          text: "O trabalho inclui a implementação dos modelos, a análise dos resultados e a documentação do processo de desenvolvimento.",
-          aside: "Código e documentação disponíveis no GitHub.",
+          heading: "Melhora com ensemble learning",
+          text: "Para estimar os oito metais, o ensemble combina Random Forest, XGBoost e CatBoost, com RidgeCV reunindo as previsões. Na avaliação documentada, o erro normalizado caiu de 0.138177 com Random Forest para 0.130471 com o ensemble — redução de 5,58% no mesmo conjunto de teste.",
+          aside: "É uma melhora medida nessa comparação experimental; não representa validação independente nem impacto ambiental medido em campo.",
+        },
+      ],
+      pipeline: [
+        {
+          eyebrow: "01 · Entrada",
+          title: "Coleta",
+          text: "Uma amostra reúne evidências visuais e medições da água.",
+          details: [
+            "Foto do corpo hídrico",
+            "Temperatura, pH, condutividade e oxigênio dissolvido",
+            "Sólidos suspensos, carbono orgânico e fósforo opcionais",
+          ],
+        },
+        {
+          eyebrow: "02 · Inferência",
+          title: "Serviço FastAPI",
+          text: "POST /analyze recebe a imagem e os dados e coordena os dois caminhos de inferência.",
+          branches: [
+            {
+              title: "Imagem · YOLO ONNX",
+              text: "Detecta elementos visuais e pode devolver a imagem anotada.",
+            },
+            {
+              title: "Medições · Ensemble",
+              text: "MultiOutputRegressor estima oito metais; cada saída combina Random Forest, XGBoost e CatBoost com RidgeCV.",
+            },
+          ],
+        },
+        {
+          eyebrow: "03 · Triagem",
+          title: "Regra de risco na IA",
+          text: "O serviço FastAPI classifica o risco de 1 a 3 por regra de negócio; não é uma saída do modelo ML. O histórico das cinco coletas anteriores pode elevar o nível em um quando há pelo menos três alertas.",
+        },
+        {
+          eyebrow: "04 · Registro",
+          title: "API principal",
+          text: "A API .NET valida a resposta do serviço de IA e salva os resultados associados à coleta, disponíveis para apoiar o acompanhamento do corpo hídrico.",
         },
       ],
     },

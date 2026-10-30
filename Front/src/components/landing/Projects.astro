@@ -1,5 +1,4 @@
 ---
-import defaultProjectImage from "@/images/projects/default.svg";
 import PortfolioImage from "@/components/landing/PortfolioImage.astro";
 import PortfolioMediaLink from "@/components/landing/PortfolioMediaLink.astro";
 import Text from "@/components/fundations/elements/Text.astro";
@@ -74,21 +73,29 @@ import { activeProfile } from "@/data/Profiles/activeProfile";
                   <source src={project.videoUrl} type="video/mp4" />
                   Seu navegador não oferece suporte à reprodução de vídeo.
                 </video>
-              ) : (
+              ) : project.coverImage ? (
                 <PortfolioMediaLink href={`/projeto/${project.slug}`}>
                   <PortfolioImage
                     width={1200}
                     height={630}
-                    src={defaultProjectImage}
-                    alt={`Imagem do projeto ${project.title}`}
+                    src={project.coverImage}
+                    alt={`Diagrama de arquitetura do projeto ${project.title}`}
                     loading="lazy"
                     decoding="async"
                     class="size-full aspect-4/2 object-cover object-center transition-transform duration-500 group-hover:scale-[1.02]"
                   />
                 </PortfolioMediaLink>
-              )
+              ) : null
             }
             {project.videoUrl && (
+              <a
+                href={`/projeto/${project.slug}`}
+                class="mt-4 inline-flex text-xs tracking-tight text-accent-700 transition-colors hover:text-accent-900 dark:text-accent-400 dark:hover:text-accent-300"
+              >
+                Ver detalhes do projeto →
+              </a>
+            )}
+            {!project.videoUrl && !project.coverImage && (
               <a
                 href={`/projeto/${project.slug}`}
                 class="mt-4 inline-flex text-xs tracking-tight text-accent-700 transition-colors hover:text-accent-900 dark:text-accent-400 dark:hover:text-accent-300"

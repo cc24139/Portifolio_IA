@@ -1,6 +1,6 @@
 ---
-import fallbackCaseImage from "@/images/projects/default.svg";
 import PortfolioImage from "@/components/landing/PortfolioImage.astro";
+import CasePipeline from "@/components/landing/CasePipeline.astro";
 import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import type { PortfolioCase } from "@/data/Profiles/activeProfile";
@@ -95,15 +95,15 @@ const [contextBlock, processBlock, resultBlock] = item.detail.blocks;
           <source src={item.videoUrl} type="video/mp4" />
           Seu navegador não oferece suporte à reprodução de vídeo.
         </video>
-      ) : (
+      ) : item.coverImage ? (
         <PortfolioImage
           width={1420}
           height={930}
-          src={fallbackCaseImage}
-          alt={`Imagem principal de ${item.title}`}
+          src={item.coverImage}
+          alt={`Diagrama da arquitetura de ${item.title}`}
           class="mt-12 aspect-[16/10] w-full object-cover object-center lg:mt-16"
         />
-      )
+      ) : null
     }
 
     {
@@ -123,7 +123,7 @@ const [contextBlock, processBlock, resultBlock] = item.detail.blocks;
               </Text>
             </div>
 
-            <div class="lg:col-span-4">
+            <div class={contextBlock.image ? "lg:col-span-4" : "lg:col-span-9"}>
               <Text
                 tag="h2"
                 variant="textLG"
@@ -140,35 +140,39 @@ const [contextBlock, processBlock, resultBlock] = item.detail.blocks;
               </Text>
             </div>
 
-            <div class="lg:col-span-5">
+            {contextBlock.image && <div class="lg:col-span-5">
               <PortfolioImage
                 width={900}
                 height={1100}
-                src={fallbackCaseImage}
+                src={contextBlock.image}
                 alt={`Imagem lateral — ${contextBlock.heading}`}
                 class="aspect-[4/5] w-full object-cover object-center"
               />
-            </div>
+            </div>}
           </div>
         </section>
       )
     }
 
     {
+      item.detail.pipeline && <CasePipeline steps={item.detail.pipeline} />
+    }
+
+    {
       processBlock && (
         <section class="mt-16 border-t border-base-200 pt-12 dark:border-base-800 lg:mt-24 lg:pt-16">
           <div class="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12 lg:items-center">
-            <div class="order-2 lg:order-1 lg:col-span-5">
+            {processBlock.image && <div class="order-2 lg:order-1 lg:col-span-5">
               <PortfolioImage
                 width={900}
                 height={700}
-                src={fallbackCaseImage}
+                src={processBlock.image}
                 alt={`Imagem — ${processBlock.heading}`}
                 class="aspect-[5/4] w-full object-cover object-center"
               />
-            </div>
+            </div>}
 
-            <div class="order-1 lg:order-2 lg:col-span-4 lg:col-start-8">
+            <div class:list={["order-1 lg:order-2", processBlock.image ? "lg:col-span-4 lg:col-start-8" : "lg:col-span-6 lg:col-start-4"]}>
               <Text tag="p" variant="textXS" class="uppercase text-base-600 dark:text-base-300">
                 {eyebrow} 02
               </Text>
@@ -236,13 +240,13 @@ const [contextBlock, processBlock, resultBlock] = item.detail.blocks;
             </Text>
           </div>
 
-          <PortfolioImage
+          {resultBlock.image && <PortfolioImage
             width={1420}
             height={930}
-            src={fallbackCaseImage}
+            src={resultBlock.image}
             alt={`Imagem final — ${resultBlock.heading}`}
             class="mt-10 aspect-[16/9] w-full object-cover object-center lg:mt-12"
-          />
+          />}
         </section>
       )
     }
