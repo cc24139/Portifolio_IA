@@ -3,7 +3,7 @@ export const GENIA = {
   location: "Brazil, SP",
   role: "developer",
   contactLabel: "Contato",
-  contactHref: "/contato",
+  contactHref: "/#contato",
   intro:
-    "Developer, Brazil. Me chamo Luis Filipe e sou um desenvolvedor curioso sobre a evolução da IA. Estou sempre atento às novidades e tendências do setor e realizo testes e experimentos para entender melhor como a IA pode ser aplicada em diferentes contextos.",
+    "Developer, Brazil. Me chamo Luis Filipe e sou um desenvolvedor back-end e utilizo a ia para melhorar meu trabahlo. Utilizo em projetos para agregar valor e melhorar a produtividade!",
 };
