@@ -96,6 +96,7 @@ export const projectItems: PortfolioCase[] = [
       "Agente em Python para jogar Othello, usando busca Minimax e poda Alfa-Beta para escolher jogadas contra outra IA.",
     category: "Inteligência Artificial · Jogos",
     repositoryUrl: "https://github.com/cc24139/TrabalhosIA/tree/main/ti326m-trabalho1-equipe3-master/ti326m-trabalho1-equipe3-master",
+    videoUrl: "/GENIA/20261029-0054-27.8724262.mp4",
     detail: {
       summary:
         "Trabalho da disciplina TI326 que modela o jogo Othello e implementa um agente capaz de disputar partidas contra outra inteligência artificial.",
